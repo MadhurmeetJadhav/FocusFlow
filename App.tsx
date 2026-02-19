@@ -1,24 +1,22 @@
 
-import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import RootProvider from './src/app/providers/RootProvider';
+import HomeScreen from './src/modules/HomeScreen';
 
 
 function App() {
 
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>App</Text>
+
+    <SafeAreaView style={{ flex: 1 }}>
+      <RootProvider>
+        <HomeScreen />
+      </RootProvider>
     </SafeAreaView>
+
   );
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-
-  },
-});
 
 export default App;
