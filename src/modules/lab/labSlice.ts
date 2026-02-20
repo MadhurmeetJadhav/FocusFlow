@@ -1,18 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getMessage } from "../../services/labServices";
 
 export const fetchMessage = createAsyncThunk(
     'lab/fetchMessage',
     async(_, thunkAPI)=>{
-        return new Promise<string>((resolve,reject)=>{
-            setTimeout(()=>{
-                const success = Math.random()> 0.5
-                if(success){
-                    resolve("Message Fetched Successfully")
-                }else{
-                    reject(new Error('Something went wrong!'))
-                }
-            },2000)
-        })
+        try {
+            const message =await getMessage()
+            return message
+        } catch (error) {
+            return thunkAPI.rejectWithValue('Something went wrong!')
+        }
     }
 )
 
@@ -42,8 +39,8 @@ const labSlice = createSlice({
         })
         .addCase(fetchMessage.rejected,(state,action)=>{
             state.status ='error'
-            state.error = action.error.message
-            console.log('❌ REJECTED', action.error.message);
+            state.error = action.payload as string
+            console.log('❌ REJECTED', action.payload);
         })
     }
 })

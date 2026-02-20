@@ -1,17 +1,16 @@
 import { Button, StyleSheet, Text, View } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../app/store/store";
 import { fetchMessage } from "./lab/labSlice";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { useAppSelector } from "../hooks/useAppSelector";
 
 
 const HomeScreen = () => {
 
-    const dispatch = useDispatch<AppDispatch>()
+    const dispatch = useAppDispatch()
 
-    const status = useSelector((state: RootState) => state.lab.status)
-    const data = useSelector((state: RootState) => state.lab.data)
-    const error = useSelector((state: RootState) => state.lab.error)
+    const status = useAppSelector((state) => state.lab.status)
+    const data = useAppSelector((state) => state.lab.data)
+    const error = useAppSelector((state) => state.lab.error)
 
     console.log(status, data, error), ':CHECK';
 
