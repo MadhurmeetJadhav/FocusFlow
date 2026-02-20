@@ -1,7 +1,6 @@
-
-import { SafeAreaView } from 'react-native-safe-area-context';
 import RootProvider from './src/app/providers/RootProvider';
-import HomeScreen from './src/modules/HomeScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { AppNavigator } from './src/app/navigation/AppNavigator';
 
 
 function App() {
@@ -9,11 +8,13 @@ function App() {
 
   return (
 
-    <SafeAreaView style={{ flex: 1 }}>
-      <RootProvider>
-        <HomeScreen />
-      </RootProvider>
-    </SafeAreaView>
+
+    <RootProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </RootProvider>
+
 
   );
 }
