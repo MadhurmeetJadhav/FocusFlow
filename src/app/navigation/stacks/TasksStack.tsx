@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { FocusScreen } from "../../modules/timer/screens/FocusScreen";
+import { TasksScreen } from "../../../modules/tasks/screens/TasksScreen";
 
 const Stack = createNativeStackNavigator();
 
-export default function FocusStack() {
+export default function TasksStack() {
     return <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Focus" component={FocusScreen} />
+        <Stack.Screen name="Tasks" component={TasksScreen} />
     </Stack.Navigator>;
 }

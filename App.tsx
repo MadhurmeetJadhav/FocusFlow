@@ -1,6 +1,6 @@
 import RootProvider from './src/app/providers/RootProvider';
 import { NavigationContainer } from '@react-navigation/native';
-import { AppNavigator } from './src/app/navigation/AppNavigator';
+import { RootNavigator } from './src/app/navigation/RootNavigator';
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
     <RootProvider>
       <NavigationContainer>
-        <AppNavigator />
+        <RootNavigator />
       </NavigationContainer>
     </RootProvider>
 

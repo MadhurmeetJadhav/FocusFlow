@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TasksScreen } from "../../modules/tasks/screens/TasksScreen";
+import { HabitsScreen } from "../../../modules/habits/screens/HabitsScreen";
 
 const Stack = createNativeStackNavigator();
 
-export default function TasksStack() {
+export default function HabitsStack() {
     return <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Tasks" component={TasksScreen} />
+        <Stack.Screen name="Habits" component={HabitsScreen} />
     </Stack.Navigator>;
 }
