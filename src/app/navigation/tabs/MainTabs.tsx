@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import TasksStack from "./TasksStack";
-import HabitsStack from "./HabitsStack";
-import FocusStack from "./FocusStack";
+import TasksStack from "../stacks/TasksStack";
+import HabitsStack from "../stacks/HabitsStack";
+import FocusStack from "../stacks/FocusStack";
 
 const Bottom = createBottomTabNavigator()
 

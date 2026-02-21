@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import labSlice from "../../modules/lab/labSlice";
+import taskSlice from "../../modules/tasks/store/taskSlice";
 
 export const store = configureStore({
     reducer:{
-        lab: labSlice
+        lab: labSlice,
+        tasks: taskSlice
     }
 })
 
