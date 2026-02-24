@@ -32,9 +32,8 @@ export const checkAuthTHunk = createAsyncThunk(
     'auth/checkAuth',
     async(_,thunkAPI)=>{
         try {
-            const result = await getToken()
-            if(result){
-                const token = result.password
+            const token = await getToken()
+            if(token){
                 const user = { id: '1', name: 'Test User', email: 'test@test.com' }
                 return { user, token }
             }
