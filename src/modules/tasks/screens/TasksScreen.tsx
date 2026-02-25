@@ -1,9 +1,10 @@
 import { useEffect } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { Button, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { fetchTaskThunk } from "../store/taskSlice"
 import { useAppDispatch } from "../../../hooks/useAppDispatch"
 import { useAppSelector } from "../../../hooks/useAppSelector"
+import { logOutThunk } from "../../auth/authThunk"
 
 export const TasksScreen = () => {
 
@@ -48,6 +49,8 @@ export const TasksScreen = () => {
                     )
                 })
             }
+
+            <Button title="Logout" onPress={() => dispatch(logOutThunk())} />
         </SafeAreaView>
     )
 }

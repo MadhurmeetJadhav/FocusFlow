@@ -14,6 +14,16 @@ export const login=(email : string , password : string): Promise<LoginResponse>=
                   token:'mock-token-123',
                   expiresAt:Date.now() + 5 * 60 * 1000
                 })
+            }else   if(email === 'test2@test.com' && password === '1234567'){
+                resolve({
+                    user:{
+                      id:'2',
+                      name:'Test User 2',
+                      email:'test2@test2.com'
+                    },
+                    token:'mock-token-1233',
+                    expiresAt:Date.now() + 5 * 60 * 1000
+                  })
             }else{
                 reject(new Error('Invalid Credentials'))
             }

@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { Task } from "../../../types/Task"
 import { fetchTasks } from "../../../services/taskService"
+import { logOutThunk } from "../../auth/authThunk"
+import { RootState } from "../../../app/store/store"
 
 
 
@@ -8,7 +10,10 @@ export const fetchTaskThunk = createAsyncThunk(
     'tasks/fetchTasks',
     async(_,thunkAPI)=>{
         try {
-            const tasks = await fetchTasks()
+            const state = thunkAPI.getState() as RootState
+            const userId = state.auth.user?.id
+            if(!userId) return thunkAPI.rejectWithValue('User not found!')
+            const tasks = await fetchTasks(userId)
             return tasks
         } catch (error) {
             return thunkAPI.rejectWithValue('Something went wrong!')
@@ -41,6 +46,11 @@ const taskSlice = createSlice({
         .addCase(fetchTaskThunk.rejected, (state,action)=>{
             state.status ='error'
             state.error= action.payload as string
+        })
+        .addCase(logOutThunk.fulfilled,(state)=>{
+            state.tasks = []
+            state.status = 'idle'
+            state.error = null
         })
     }
 })
