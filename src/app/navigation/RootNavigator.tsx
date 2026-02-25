@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { AppStack } from "./stacks/AppStack";
 import { AuthStack } from "./stacks/AuthStack";
-import { useAuthBootstrap } from "../../hooks/useAuthBootstrap";
+import { useAuthBootstrap } from "../../modules/auth/useAuthBootstrap";
 import { Text, View } from "react-native";
+import { SplashScreen } from "../../modules/auth/screens/SplashScreen";
 
 export const RootNavigator = () => {
     useAuthBootstrap()
@@ -13,9 +14,9 @@ export const RootNavigator = () => {
 
     if (status === 'checking') {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Loading...</Text>
-            </View>
+            <>
+                <SplashScreen />
+            </>
         )
     }
     const isLoggedIn = status === 'authenticated'

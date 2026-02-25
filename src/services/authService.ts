@@ -11,7 +11,8 @@ export const login=(email : string , password : string): Promise<LoginResponse>=
                     name:'Test User',
                     email:'test@test.com'
                   },
-                  token:'mock-token-123'
+                  token:'mock-token-123',
+                  expiresAt:Date.now() + 5 * 60 * 1000
                 })
             }else{
                 reject(new Error('Invalid Credentials'))

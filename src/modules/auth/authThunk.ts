@@ -8,7 +8,7 @@ export const loginThunk = createAsyncThunk(
         try {
             
             const loginResponse = await login(email,password)
-            await saveToken(loginResponse.token)
+            await saveToken(loginResponse.token, loginResponse.expiresAt)
             return loginResponse
 
         } catch (error) {
@@ -32,12 +32,22 @@ export const checkAuthTHunk = createAsyncThunk(
     'auth/checkAuth',
     async(_,thunkAPI)=>{
         try {
-            const token = await getToken()
-            if(token){
+            const stored = await getToken()
+
+            if(stored){
+
+           
+            if(Date.now()> stored?.expiresAt){
+               await clearToken()
+               return null
+            }
+           
                 const user = { id: '1', name: 'Test User', email: 'test@test.com' }
-                return { user, token }
+                return { user, token:stored?.token }
             }
             return null
+            // temporary test
+    // return { user: { id: '1', name: 'Test User', email: 'test@test.com' }, token: 'mock-token' }    
             
         } catch (error) {
             return thunkAPI.rejectWithValue('Something went wrong!')

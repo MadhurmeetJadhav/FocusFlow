@@ -14,5 +14,6 @@ export type AuthState={
 
 export type LoginResponse={
     user:User,
-    token:string
+    token:string,
+    expiresAt:number|undefined
 }
