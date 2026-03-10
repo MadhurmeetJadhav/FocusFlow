@@ -1,5 +1,5 @@
 export type Task ={
-    id: string
+    id: string | undefined
     title: string
     description?:string
     completed: boolean
